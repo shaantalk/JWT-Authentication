@@ -1,0 +1,123 @@
+/* Apply a dark theme to the body and set font properties */
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style all headers with a lighter gray color */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #bbbbbb;
+}
+
+/* Style paragraphs with a slightly lighter font color */
+p {
+  color: #ddd;
+}
+
+/* Style links with a subtle blue hue and remove text-decoration */
+a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+/* Add a hover effect to links to improve interactivity */
+a:hover {
+  text-decoration: underline;
+}
+
+/* Style forms to center content and add spacing */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 20px;
+}
+
+/* Style input fields to match the dark theme */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Modify input placeholders to have a lighter font color */
+::placeholder {
+  color: #888;
+}
+
+/* Style buttons with a subtle color and hover effects */
+button {
+  background-color: #1e90ff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #4169e1;
+}
+
+/* Add some padding and a border to textarea */
+textarea {
+  background-color: #2c2c2c;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  min-height: 100px;
+}
+
+/* Style tables with consistent padding and borders */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #444;
+  text-align: left;
+  padding: 8px;
+}
+
+/* Style even rows differently for better readability */
+tr:nth-child(even) {
+  background-color: #1f1f1f;
+}
+
+/* Add global padding to main content sections */
+section {
+  padding: 20px;
+}
+
+/* Style headers within sections for better hierarchy */
+section > h1 {
+  margin-bottom: 20px;
+}
+
+/* Style lists with padding and a lighter font color */
+ul,
+ol {
+  color: #ddd;
+  padding-left: 20px;
+}
