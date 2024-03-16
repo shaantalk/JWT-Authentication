@@ -101,3 +101,150 @@ flowchart LR
     class CreateUser,CheckCredentials,CreateJWT,VerifyJWT process;
     class ReturnRegisterResponse,ReturnLoginResponse,ReturnProtectedResponse response;
 ```
+
+
+
+```mermaid
+
+classDiagram
+    %% Define Frontend Components
+    class Frontend {
+        -React App
+        -Router
+        -Components
+        -API Services
+    }
+    class Components {
+        -LoginPage
+        -RegisterPage
+        -ProtectedPage
+    }
+    class APIServices {
+        +registerUser()
+        +loginUser()
+        +fetchProtectedData()
+    }
+
+    %% Define Backend Components
+    class Backend {
+        -Express Server
+        -Middleware
+        -Routes
+        -Authentication Service
+        -User Service
+        -Database
+    }
+    class Middleware {
+        +authenticateJWT()
+        +errorHandling()
+    }
+    class Routes {
+        +registerRoute
+        +loginRoute
+        +protectedRoute
+    }
+    class AuthenticationService {
+        +createToken()
+        +verifyToken()
+    }
+    class UserService {
+        +createUser()
+        +findUser()
+    }
+    class Database {
+        +Users Collection
+    }
+
+    %% Define Relationships
+    Frontend --|> Components
+    Frontend --|> APIServices
+    Components --|> LoginPage
+    Components --|> RegisterPage
+    Components --|> ProtectedPage
+    APIServices --> Backend: Sends HTTP requests
+    Backend --|> Middleware
+    Backend --|> Routes
+    Backend --|> AuthenticationService
+    Backend --|> UserService
+    Backend --|> Database
+    Middleware --> AuthenticationService: Uses for token verification
+    Routes --> UserService: Uses to interact with user data
+    Routes --> AuthenticationService: Uses to handle authentication
+    AuthenticationService --> Database: Queries user data
+    UserService --> Database: Creates and finds users
+
+```
+
+
+
+```mermaid
+%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#334455', 'primaryBorderColor': '#88aadd', 'lineColor': '#88aadd', 'textColor': '#ffffff', 'mainBkg': '#1a1a1a', 'nodeBkg': '#333344', 'nodeBorderColor': '#88aadd', 'clusterBkg': '#242424', 'clusterBorder': '#88aadd', 'nodeTextColor': 'white'}}}%%
+flowchart LR
+    jwt[JWT Authentication]
+    theft[Token Theft]
+    leak[Information Leakage]
+    expiry[Token Expiry]
+    signing[Weak Signing Algorithm]
+    storage[Insecure Token Storage]
+    trust[Trust of Token Claims]
+    
+    jwt --> theft
+    jwt --> leak
+    jwt --> expiry
+    jwt --> signing
+    jwt --> storage
+    jwt --> trust
+    
+    theft -- "Use HTTPS" --> preventTheft[Prevent Token Theft]
+    theft -- "Token rotation" --> preventTheft
+    theft -- "Short-lived tokens" --> preventTheft
+    
+    leak -- "Avoid storing sensitive data" --> preventLeakage[Prevent Information Leakage]
+    
+    expiry -- "Implement token expiration" --> handleExpiry[Handle Token Expiry]
+    
+    signing -- "Use strong algorithms (e.g., RS256)" --> preventWeakSigning[Prevent Weak Signing]
+    
+    storage -- "Avoid storing in LocalStorage" --> secureStorage[Secure Token Storage]
+    storage -- "Use secure cookies with HttpOnly" --> secureStorage
+    
+    trust -- "Validate token integrity" --> validateTrust[Validate Trust of Token Claims]
+    trust -- "Always verify claims" --> validateTrust
+    
+    classDef risk fill:#ff6666,stroke:#ffffff,stroke-width:2px,color:#ffffff;
+    classDef solution fill:#00ff00,stroke:#ffffff,stroke-width:2px,color:#ffffff;
+    
+    class theft,leak,expiry,signing,storage,trust risk;
+    class preventTheft,preventLeakage,handleExpiry,preventWeakSigning,secureStorage,validateTrust solution;
+
+```
+
+
+```mermaid
+%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#4d4d4d', 'primaryBorderColor': '#d3d3d3', 'lineColor': '#d3d3d3', 'textColor': '#d3d3d3', 'mainBkg': '#2c2c2c', 'nodeBkg': '#4d4d4d', 'nodeBorderColor': '#d3d3d3', 'clusterBkg': '#3a3a3a', 'clusterBorder': '#d3d3d3', 'nodeTextColor': 'white', 'clusterTextColor': '#d3d3d3', 'arrowheadColor': '#d3d3d3'}}}%%
+flowchart LR
+    jwt[JWT Authentication]
+    theft[Token Theft]
+    leak[Information Leakage]
+    expiry[Token Expiry]
+    signing[Weak Signing Algorithm]
+    storage[Insecure Token Storage]
+    trust[Trust of Token Claims]
+
+    jwt --> theft
+    jwt --> leak
+    jwt --> expiry
+    jwt --> signing
+    jwt --> storage
+    jwt --> trust
+
+    theft -- "Use HTTPS, Token rotation, Short-lived tokens" --> preventTheft[Prevent Token Theft]
+    leak -- "Avoid storing sensitive data" --> preventLeakage[Prevent Information Leakage]
+    expiry -- "Implement token expiration" --> handleExpiry[Handle Token Expiry]
+    signing -- "Use strong algorithms (e.g., RS256)" --> preventWeakSigning[Prevent Weak Signing]
+    storage -- "Avoid storing in LocalStorage, Use secure cookies with HttpOnly" --> secureStorage[Secure Token Storage]
+    trust -- "Validate token integrity, Always verify claims" --> validateTrust[Validate Trust of Token Claims]
+
+    classDef default fill:#4d4d4d,stroke:#d3d3d3,stroke-width:1px,color:#d3d3d3;
+```
+
